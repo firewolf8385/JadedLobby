@@ -24,6 +24,8 @@
  */
 package net.jadedmc.jadedlobby;
 
+import be.isach.ultracosmetics.UltraCosmeticsData;
+import be.isach.ultracosmetics.player.UltraPlayer;
 import net.jadedmc.jadedlobby.events.LobbyJoinEvent;
 import net.jadedmc.jadedlobby.lobby.LobbyScoreboard;
 import net.jadedmc.jadedlobby.utils.LocationUtils;
@@ -39,6 +41,11 @@ public class JadedLobby {
 
     public static void setPlugin(final JadedLobbyPlugin pl) {
         plugin = pl;
+    }
+
+    public static void clearCosmetics(final Player player) {
+        UltraPlayer ultraPlayer = UltraCosmeticsData.get().getPlugin().getPlayerManager().getUltraPlayer(player);
+        ultraPlayer.withPreserveEquipped(ultraPlayer::clear);
     }
 
     public static void sendToLobby(final Player player) {
@@ -97,6 +104,10 @@ public class JadedLobby {
         player.getInventory().setItem(1, profileItem);
         player.getInventory().setItem(2, cosmeticsItem);
         player.getInventory().setItem(8, settings);
+
+        // Equips saved cosmetics.
+        UltraPlayer ultraPlayer = UltraCosmeticsData.get().getPlugin().getPlayerManager().getUltraPlayer(player);
+        ultraPlayer.getProfile().equip();
 
         // LobbyJoinEvent
         plugin.getServer().getPluginManager().callEvent(new LobbyJoinEvent(player));

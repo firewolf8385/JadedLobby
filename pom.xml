@@ -95,5 +95,12 @@
             <artifactId>nuvotifier-bukkit</artifactId>
             <version>2.6.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.datatags</groupId>
+            <artifactId>UltraCosmetics</artifactId>
+            <version>0.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/UltraCosmetics-3.4.2-RELEASE.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
