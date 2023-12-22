@@ -1,0 +1,13 @@
+name: JadedLobby
+version: '${project.version}'
+main: net.jadedmc.jadedlobby.JadedLobbyPlugin
+api-version: "1.19"
+
+depend:
+  - PlaceholderAPI
+
+commands:
+  spawn:
+    description: spawn command
+  setspawn:
+    description: set spawn command.
