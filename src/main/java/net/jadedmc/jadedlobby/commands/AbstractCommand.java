@@ -55,6 +55,7 @@ public abstract class AbstractCommand implements CommandExecutor {
     public static void registerCommands(JadedLobbyPlugin pl) {
         plugin = pl;
 
+        new JamisonCMD();
         new SetSpawnCMD(pl);
         new SpawnCMD(pl);
         new VoteCMD();

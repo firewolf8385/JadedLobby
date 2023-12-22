@@ -8,6 +8,8 @@ depend:
   - Votifier
 
 commands:
+  jamison:
+    description: Open jamison the journeymen.
   spawn:
     description: spawn command
   setspawn:
