@@ -22,35 +22,29 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-package net.jadedmc.jadedlobby;
+package net.jadedmc.jadedlobby.listeners;
 
-import net.jadedmc.jadedlobby.commands.AbstractCommand;
-import net.jadedmc.jadedlobby.listeners.PlayerInteractListener;
-import net.jadedmc.jadedlobby.listeners.PlayerJoinListener;
-import net.jadedmc.jadedlobby.listeners.VotifierListener;
-import net.jadedmc.jadedlobby.utils.scoreboard.ScoreboardUpdate;
-import org.bukkit.plugin.java.JavaPlugin;
+import com.vexsoftware.votifier.model.VotifierEvent;
+import net.jadedmc.jadedutils.chat.ChatUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 
-public final class JadedLobbyPlugin extends JavaPlugin {
-    private SettingsManager settingsManager;
+public class VotifierListener implements Listener {
 
-    @Override
-    public void onEnable() {
-        JadedLobby.setPlugin(this);
+    @EventHandler
+    public void onVotifierEvent(VotifierEvent event) {
+        String username = event.getVote().getUsername();
 
-        settingsManager = new SettingsManager(this);
+        Player player = Bukkit.getPlayer(username);
 
-        AbstractCommand.registerCommands(this);
+        if(player == null) {
+            System.out.println("Invalid Vote Received: " + username);
+            return;
+        }
 
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
-        getServer().getPluginManager().registerEvents(new VotifierListener(), this);
-
-        // Updates scoreboards every second
-        new ScoreboardUpdate().runTaskTimer(this, 20L, 20L);
-    }
-
-    public SettingsManager settingsManager() {
-        return settingsManager;
+        Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "uc give key 1 " + username);
+        ChatUtils.chat(player, "&aYou have received &f1 &7&lTreasure Key&a!");
     }
 }
