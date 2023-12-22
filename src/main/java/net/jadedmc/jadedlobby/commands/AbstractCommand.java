@@ -57,6 +57,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
         new SetSpawnCMD(pl);
         new SpawnCMD(pl);
+        new VoteCMD();
     }
 
     /**

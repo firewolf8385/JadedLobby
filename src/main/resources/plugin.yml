@@ -12,3 +12,5 @@ commands:
     description: spawn command
   setspawn:
     description: set spawn command.
+  vote:
+    description: View vote links.
