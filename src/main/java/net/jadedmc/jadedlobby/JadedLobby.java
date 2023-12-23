@@ -100,10 +100,11 @@ public class JadedLobby {
                         .build();
 
         player.getInventory().clear();
-        player.getInventory().setItem(0, gamesItem);
-        player.getInventory().setItem(1, profileItem);
-        player.getInventory().setItem(2, cosmeticsItem);
-        player.getInventory().setItem(8, settings);
+
+        if(plugin.settingsManager().getConfig().getBoolean("Items.Games")) player.getInventory().setItem(0, gamesItem);
+        if(plugin.settingsManager().getConfig().getBoolean("Items.Profile")) player.getInventory().setItem(1, profileItem);
+        if(plugin.settingsManager().getConfig().getBoolean("Items.Cosmetics")) player.getInventory().setItem(2, cosmeticsItem);
+        if(plugin.settingsManager().getConfig().getBoolean("Items.Settings")) player.getInventory().setItem(8, settings);
 
         // Equips saved cosmetics.
         UltraPlayer ultraPlayer = UltraCosmeticsData.get().getPlugin().getPlayerManager().getUltraPlayer(player);

@@ -9,6 +9,12 @@ Spawn:
   Pitch: 0
   Set: false
 
+Items:
+  Games: true
+  Profile: true
+  Cosmetics: true
+  Settings: true
+
 Scoreboard:
   Enabled: true
   Title: "&a&lJadedMC"
