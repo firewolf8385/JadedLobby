@@ -14,7 +14,7 @@ public class JamisonGUI extends CustomGUI {
         addFiller(0,1,2,3,4,5,6,7,8,45,46,47,48,49,50,51,52,53);
 
         ItemStack voteItem = new ItemBuilder(Material.GOLD_BLOCK)
-                .setDisplayName("&a&lVote")
+                .setDisplayName("<green><bold>Vote")
                 .addLore("<gray>Click to visit the voting websites!").addLore("").addLore("<gray>Rewards:").addLore("  <white>3x <gray><bold>Treasure Key").build();
 
         setItem(22, voteItem, (p,a) -> Bukkit.dispatchCommand(p, "vote"));
