@@ -22,36 +22,30 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-package net.jadedmc.jadedlobby;
+package net.jadedmc.jadedlobby.listeners;
 
-import net.jadedmc.jadedlobby.commands.AbstractCommand;
-import net.jadedmc.jadedlobby.listeners.*;
-import net.jadedmc.jadedlobby.utils.scoreboard.ScoreboardUpdate;
-import org.bukkit.plugin.java.JavaPlugin;
+import net.jadedmc.jadedlobby.JadedLobby;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 
-public final class JadedLobbyPlugin extends JavaPlugin {
-    private SettingsManager settingsManager;
+public class EntityDamageListener implements Listener {
 
-    @Override
-    public void onEnable() {
-        JadedLobby.setPlugin(this);
+    @EventHandler
+    public void onDamage(EntityDamageEvent event) {
+        if(!(event.getEntity() instanceof Player player)) {
+            return;
+        }
 
-        settingsManager = new SettingsManager(this);
 
-        AbstractCommand.registerCommands(this);
+        if(JadedLobby.isLobbyWorld(player.getWorld())) {
+            event.setCancelled(true);
 
-        getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
-        getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
-        getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
-        getServer().getPluginManager().registerEvents(new VotifierListener(), this);
-
-        // Updates scoreboards every second
-        new ScoreboardUpdate().runTaskTimer(this, 20L, 20L);
+            if(event.getCause() == EntityDamageEvent.DamageCause.VOID) {
+                JadedLobby.sendToLobby(player);
+            }
+        }
     }
 
-    public SettingsManager settingsManager() {
-        return settingsManager;
-    }
 }

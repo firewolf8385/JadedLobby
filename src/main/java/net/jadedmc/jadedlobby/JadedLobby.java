@@ -33,6 +33,7 @@ import net.jadedmc.jadedutils.items.ItemBuilder;
 import net.jadedmc.jadedutils.items.SkullBuilder;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -46,6 +47,10 @@ public class JadedLobby {
     public static void clearCosmetics(final Player player) {
         UltraPlayer ultraPlayer = UltraCosmeticsData.get().getPlugin().getPlayerManager().getUltraPlayer(player);
         ultraPlayer.withPreserveEquipped(ultraPlayer::clear);
+    }
+
+    public static boolean isLobbyWorld(World world) {
+        return world.getName().equalsIgnoreCase(plugin.settingsManager().getConfig().getString("LobbyWorld"));
     }
 
     public static void sendToLobby(final Player player) {
