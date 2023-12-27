@@ -24,18 +24,18 @@
  */
 package net.jadedmc.jadedlobby.listeners;
 
+import net.jadedmc.jadedcore.events.JadedJoinEvent;
 import net.jadedmc.jadedlobby.JadedLobby;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 
-public class PlayerJoinListener implements Listener {
+public class JadedJoinListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
+    public void onJoin(JadedJoinEvent event) {
+        Player player = event.getJadedPlayer().getPlayer();
         JadedLobby.sendToLobby(player);
     }
 }
