@@ -1,6 +1,6 @@
 package net.jadedmc.jadedlobby.gui;
 
-import net.jadedmc.jadedcore.utils.gui.CustomGUI;
+import net.jadedmc.jadedutils.gui.CustomGUI;
 import net.jadedmc.jadedutils.items.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -19,5 +19,4 @@ public class JamisonGUI extends CustomGUI {
 
         setItem(22, voteItem, (p,a) -> Bukkit.dispatchCommand(p, "vote"));
     }
-
 }

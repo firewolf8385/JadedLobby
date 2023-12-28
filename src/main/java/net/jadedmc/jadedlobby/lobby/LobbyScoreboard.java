@@ -26,8 +26,8 @@ package net.jadedmc.jadedlobby.lobby;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.jadedmc.jadedlobby.JadedLobbyPlugin;
-import net.jadedmc.jadedlobby.utils.scoreboard.CustomScoreboard;
-import net.jadedmc.jadedlobby.utils.scoreboard.ScoreHelper;
+import net.jadedmc.jadedutils.scoreboard.CustomScoreboard;
+import net.jadedmc.jadedutils.scoreboard.ScoreHelper;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -78,5 +78,4 @@ public class LobbyScoreboard extends CustomScoreboard {
             helper.removeSlot(i);
         }
     }
-
 }

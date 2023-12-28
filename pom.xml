@@ -81,7 +81,7 @@
         <dependency>
             <groupId>com.github.JadedMC</groupId>
             <artifactId>JadedCore</artifactId>
-            <version>89cfaf783a</version>
+            <version>9fa1bc2953</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
